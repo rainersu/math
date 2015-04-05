@@ -1,0 +1,15 @@
+define([
+	'./undefined',
+	'./NaN',
+	'./float',
+	'./shell',
+	'./math',
+	'./floor',
+	'./pow',
+	'./num',
+	'./object',
+	'./hasOP',
+	'./am',
+	'./cp',
+	'./arith'
+]);
