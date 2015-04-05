@@ -1,0 +1,47 @@
+{
+	"name": "sumi-math",
+	"version": "1.0.0",
+	"homepage": "https://github.com/rainersu/math",
+	"authors": [
+		{
+			"name": "Rainer Su",
+			"email": "rainersu@foxmail.com",
+			"url": "http://cn.linkedin.com/in/rainersu",
+			"qq": "2627001536"
+		}
+	],
+	"description": "A lightweight mathematics library extending the internal Math object. ",
+	"main": "dist/sumi-math.js",
+	"keywords": [
+		"math",
+		"maths",
+		"arith",
+		"mathematics",
+		"number",
+		"arithmetic",
+		"algebra",
+		"geometry",
+		"geometric",
+		"algorithm",
+		"arithmetic"
+	],
+	"license": "MIT",
+	"ignore": [
+		"_",
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"/doc",
+		"/src",
+		"/doc.json",
+		"/Gruntfile.js",
+		"test",
+		"tests",
+		"logs",
+		"*.log"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rainersu/math.git"
+	}
+}
