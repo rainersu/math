@@ -1,13 +1,9 @@
 /**
 * 判断指定变量是否是真正的 {@link https://developer.mozilla.org/en-US/docs/Glossary/NaN|NaN} 。不同于 {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN|isNaN} 的地方在于本函数不会对被判断的变量做自动类型转换。
-* @see {@link Arith.isNumber}
-* @see {@link Arith.isNumeric}
 * @see {@link Arith.isFinite}
-* @see {@link https://developer.mozilla.org/en-US/docs/Glossary/NaN}
-* @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN}
 * @access public
 * @func Arith.isNaN
-* @param {*} val - 待检测值
+* @param {*} val - 待检测值。
 * @returns {boolean}
 * @example
 * console.log(Arith.isNaN(NaN));            // true

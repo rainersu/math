@@ -17,13 +17,20 @@ A lightweight mathematics library extending the internal Math object.
 })(this, function() {
     var undefined = void 0;
     var NaN = 0 / 0;
+    var infinity = 1 / 0;
     var float = parseFloat;
     var undef = undefined + "";
     var shell = typeof window !== undef ? window : typeof global !== undef ? global : this || 1;
     var math = Math;
     var floor = math.floor;
+    var ceil = math.ceil;
+    var sqrt = math.sqrt;
+    var min = math.min;
+    var max = math.max;
     var pow = math.pow;
+    var abs = math.abs;
     var num = Number;
+    var array = Array;
     var object = Object;
     var hasOP = object.prototype.hasOwnProperty;
     function am(v) {
@@ -57,6 +64,56 @@ A lightweight mathematics library extending the internal Math object.
     function isSafeInteger(v) {
         return isInteger(v) && v >= MIN_SAFE_INTEGER && v <= MAX_SAFE_INTEGER;
     }
+    function isComposite(v) {
+        var n = 2, q;
+        if (isInteger(v) && v > 3) {
+            q = sqrt(v);
+            while (n <= q) {
+                if (v % n++ < 1) return true;
+            }
+        }
+        return false;
+    }
+    function isPrime(v) {
+        var n = 2, q;
+        if (!isInteger(v) || v < 2) return false;
+        q = sqrt(v);
+        while (n <= q) {
+            if (v % n++ < 1) return false;
+        }
+        return true;
+    }
+    function isEven(v) {
+        return isInteger(v) && !(v % 2);
+    }
+    function isOdd(v) {
+        return isInteger(v) && !!(v % 2);
+    }
+    function toInteger(x) {
+        return x < 0 ? ceil(x) : floor(x);
+    }
+    function toDecimal(x) {
+        return x - toInteger(x);
+    }
+    function toFixed(n, i, l) {
+        l = +l;
+        n = n.toFixed(i);
+        if (l === l) {
+            n = array(l + 1).join(" ").slice(n.length) + n;
+        }
+        return n;
+    }
+    function toOrdinal(n, l) {
+        n = abs(n).toFixed();
+        return array(+l + 1).join("0").slice(n.length) + n;
+    }
+    function cycle(x, y) {
+        x %= y;
+        return x > 0 ? x : x + y;
+    }
+    function limit(n, x, y) {
+        return min(isnan(+y) ? infinity : y, max(isnan(+x) ? -infinity : x, n));
+    }
     cp(Arith, {
         EPSILON: EPSILON,
         GOLDEN_RATIO: GOLDEN_RATIO,
@@ -67,12 +124,21 @@ A lightweight mathematics library extending the internal Math object.
         isNumeric: isNumeric,
         isFinite: isfinite,
         isInteger: isInteger,
-        isSafeInteger: isSafeInteger
+        isSafeInteger: isSafeInteger,
+        isComposite: isComposite,
+        isPrime: isPrime,
+        isEven: isEven,
+        isOdd: isOdd,
+        toInteger: toInteger,
+        toDecimal: toDecimal,
+        toFixed: toFixed,
+        toOrdinal: toOrdinal,
+        cycle: cycle,
+        limit: limit
     });
-    var x = Math.pow(2, 53) - 1;
-    console.log(Arith.isSafeInteger(x));
-    console.log(isInteger(x));
-    console.log(x >= MIN_SAFE_INTEGER);
-    console.log(x <= MAX_SAFE_INTEGER);
+    var date = [ 8, 3, 2015 ].map(function(i) {
+        return Arith.toOrdinal(i, 2);
+    });
+    console.log(date.join("/"));
     return Arith;
 });

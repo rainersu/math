@@ -5,23 +5,30 @@ requirejs.config({
 requirejs([
 	'./var/arith',
 	'./var/cp',
-	
 	'./const/EPSILON',
 	'./const/GOLDEN_RATIO',
 	'./const/MAX_SAFE_INTEGER',
 	'./const/MIN_SAFE_INTEGER',
-	
 	'./number/isNaN',
 	'./number/isNumber',
 	'./number/isNumeric',
 	'./number/isFinite',
 	'./number/isInteger',
-	'./number/isSafeInteger'
+	'./number/isSafeInteger',
+	'./number/isComposite',
+	'./number/isPrime',
+	'./number/isEven',
+	'./number/isOdd',
+	'./number/toInteger',
+	'./number/toDecimal',
+	'./number/toFixed',
+	'./number/toOrdinal',
+	'./calc/cycle',
+	'./calc/limit'
 ],
 function(
 	Arith,
 	cp,
-	
 	EPSILON,
 	GOLDEN_RATIO,
 	MAX_SAFE_INTEGER,
@@ -31,7 +38,17 @@ function(
 	isNumeric,
 	isfinite,
 	isInteger,
-	isSafeInteger
+	isSafeInteger,
+	isComposite,
+	isPrime,
+	isEven,
+	isOdd,
+	toInteger,
+	toDecimal,
+	toFixed,
+	toOrdinal,
+	cycle,
+	limit
 ) {'use strict';
 
 cp(Arith, {
@@ -44,14 +61,23 @@ cp(Arith, {
 	isNumeric        : isNumeric,
 	isFinite         : isfinite,
 	isInteger        : isInteger,
-	isSafeInteger    : isSafeInteger
+	isSafeInteger    : isSafeInteger,
+	isComposite      : isComposite,
+	isPrime          : isPrime,
+	isEven           : isEven,
+	isOdd            : isOdd,
+	toInteger        : toInteger,
+	toDecimal        : toDecimal,
+	toFixed          : toFixed,
+	toOrdinal        : toOrdinal,
+	cycle            : cycle,
+	limit            : limit
 });
 
-var x=Math.pow(2, 53) - 1;
-console.log(Arith.isSafeInteger(x));  // true
-console.log(isInteger(x));
-console.log(x >= MIN_SAFE_INTEGER);
-console.log(x <= MAX_SAFE_INTEGER);
+var date = [ 8, 3, 2015 ].map(function (i) { return Arith.toOrdinal(i, 2); });
+console.log(date.join('/'));   // 08/03/2015
+
+
 
 return Arith;
 });
