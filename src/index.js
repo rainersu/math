@@ -25,6 +25,9 @@ requirejs([
 	'./number/toDecimal',
 	'./number/toFixed',
 	'./number/toOrdinal',
+	'./number/toPercent',
+	'./number/parseint',
+	'./number/parsefloat',
 	'./calc/cycle',
 	'./calc/limit',
 	'./calc/acosh',
@@ -76,6 +79,9 @@ function(
 	toDecimal,
 	toFixed,
 	toOrdinal,
+	toPercent,
+	parseint,
+	parsefloat,
 	cycle,
 	limit,
 	acosh,
@@ -105,13 +111,13 @@ function(
 	random10
 ) {'use strict';
 
-var c = 'MAX_VALUE,MIN_VALUE,NEGATIVE_INFINITY,POSITIVE_INFINITY,parseFloat,parseInt'.split(','), l, i;
-for(l = c.length; l--;) Arith[i = c[l]] =  num[i];
-c = 'E,LN10,LN2,LOG10E,LOG2E,PI,SQRT1_2,SQRT2,abs,acos,asin,atan,atan2,cos,exp,fround,log,max,min,pow,sign,sin,sqrt,tan,trunc'.split(',');
-for(l = c.length; l--;) Arith[i = c[l]] = math[i];
-c = 'toExponential,toPrecision,toString'.split(',');
-for(l = c.length; l--;)(function (i) {
-	Arith[i] = function (n, x) {
+var c = (
+	'MAX_VALUE,MIN_VALUE,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
+	'E,LN10,LN2,LOG10E,LOG2E,PI,SQRT1_2,SQRT2,abs,acos,asin,atan,atan2,cos,exp,fround,log,max,min,pow,sign,sin,sqrt,tan,trunc,' +
+	'toExponential,toPrecision,toString'
+).split(','), l = c.length;
+for(; l--;)(function (i) {
+	Arith[i] = l < 4 ? num[i] : l < 29 ? math[i] : function (n, x) {
 		return num.prototype[i].call(n, x);
 	};
 })(c[l]);
@@ -135,6 +141,9 @@ cp(Arith, {
 	toDecimal        : toDecimal,
 	toFixed          : toFixed,
 	toOrdinal        : toOrdinal,
+	toPercent        : toPercent,
+	parseInt         : parseint,
+	parseFloat       : parsefloat,
 	cycle            : cycle,
 	limit            : limit,
 	acosh            : acosh,

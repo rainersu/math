@@ -3,6 +3,7 @@ define([
 	'./shell',
 	'./math',
 	'./float',
+	'./int',
 	'./infinity',
 	'./NaN',
 	'./LN10',

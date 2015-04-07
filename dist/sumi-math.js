@@ -20,6 +20,7 @@ A lightweight mathematics library as a replacement for the internal Math object.
     var shell = typeof window !== undef ? window : typeof global !== undef ? global : this || 1;
     var math = Math;
     var float = parseFloat;
+    var int = parseInt;
     var infinity = 1 / 0;
     var NaN = 0 / 0;
     var LN10 = math.LN10;
@@ -116,6 +117,23 @@ A lightweight mathematics library as a replacement for the internal Math object.
     function toOrdinal(n, l) {
         n = abs(n).toFixed();
         return array(+l + 1).join("0").slice(n.length) + n;
+    }
+    function toPercent(n, i, l) {
+        return toFixed(n * 100, i, l - 1) + "%";
+    }
+    function parseint(n, b) {
+        return def(b, 0) ? round(parsefloat(n, b)) : int(n);
+    }
+    function parsefloat(n, b) {
+        var m = 1;
+        if (b) {
+            var x = /(?:\-|\+)?[0-9]+(?:\.[0-9]+)?(?:e(?:\-|\+)?[0-9]+(?:\.[0-9]+)?|(\%))?|(?:\-|\+)?Infinity/.exec(n);
+            if (x) {
+                n = x[0];
+                if (x[1]) m = 100;
+            }
+        }
+        return float(n) / m;
     }
     function cycle(x, y) {
         x %= y;
@@ -266,13 +284,9 @@ A lightweight mathematics library as a replacement for the internal Math object.
             return x >= 0 ? +i + 1 : +i - 1;
         }) - n) + n, -d);
     }
-    var c = "MAX_VALUE,MIN_VALUE,NEGATIVE_INFINITY,POSITIVE_INFINITY,parseFloat,parseInt".split(","), l, i;
-    for (l = c.length; l--; ) Arith[i = c[l]] = num[i];
-    c = "E,LN10,LN2,LOG10E,LOG2E,PI,SQRT1_2,SQRT2,abs,acos,asin,atan,atan2,cos,exp,fround,log,max,min,pow,sign,sin,sqrt,tan,trunc".split(",");
-    for (l = c.length; l--; ) Arith[i = c[l]] = math[i];
-    c = "toExponential,toPrecision,toString".split(",");
-    for (l = c.length; l--; ) (function(i) {
-        Arith[i] = function(n, x) {
+    var c = ("MAX_VALUE,MIN_VALUE,NEGATIVE_INFINITY,POSITIVE_INFINITY," + "E,LN10,LN2,LOG10E,LOG2E,PI,SQRT1_2,SQRT2,abs,acos,asin,atan,atan2,cos,exp,fround,log,max,min,pow,sign,sin,sqrt,tan,trunc," + "toExponential,toPrecision,toString").split(","), l = c.length;
+    for (;l--; ) (function(i) {
+        Arith[i] = l < 4 ? num[i] : l < 29 ? math[i] : function(n, x) {
             return num.prototype[i].call(n, x);
         };
     })(c[l]);
@@ -295,6 +309,9 @@ A lightweight mathematics library as a replacement for the internal Math object.
         toDecimal: toDecimal,
         toFixed: toFixed,
         toOrdinal: toOrdinal,
+        toPercent: toPercent,
+        parseInt: parseint,
+        parseFloat: parsefloat,
         cycle: cycle,
         limit: limit,
         acosh: acosh,
@@ -323,9 +340,5 @@ A lightweight mathematics library as a replacement for the internal Math object.
         guid: guid,
         random: random10
     });
-    console.log(Arith.toString(6, 2));
-    console.log(Arith.toString(254, 16));
-    console.log(Arith.toString(-10, 2));
-    console.log(Arith.toString(-255, 2));
     return Arith;
 });
