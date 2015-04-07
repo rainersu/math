@@ -1,10 +1,11 @@
 /**
-* 判断指定变量是否是 {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger|安全整数} 。
+* 判断指定变量 `val` 是否是 {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger|安全整数} 。
 * @see {@link Arith.isInteger}
-* @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger}
+* @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger|Number.isInteger}
+* @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger|Number.isSafeInteger}
 * @access public
 * @func Arith.isSafeInteger
-* @param {*} val - 待检测值。
+* @param {*} val - 要检测的变量。
 * @returns {boolean}
 * @example
 * console.log(Arith.isSafeInteger(3));                    // true

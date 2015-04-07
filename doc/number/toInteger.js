@@ -1,6 +1,7 @@
 /**
-* 获取数值的整数部分。
+* 获取数值 `num` 的整数部分。
 * @see {@link Arith.toDecimal}
+* @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc|Math.trunc}
 * @access public
 * @func Arith.toInteger
 * @param {number} num - 数字。

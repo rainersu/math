@@ -1,9 +1,9 @@
 /**
-* 判断指定变量是否是 {@link http://en.wikipedia.org/wiki/Parity_%28mathematics%29|奇数} 。
+* 判断指定变量 `val` 是否是 {@link http://en.wikipedia.org/wiki/Parity_%28mathematics%29|奇数} 。
 * @see {@link Arith.isEven}
 * @access public
 * @func Arith.isOdd
-* @param {number} val - 要检测的数值。
+* @param {number} val - 要检测的变量。
 * @returns {boolean}
 * @example
 * console.log(Arith.isOdd(0));     // false

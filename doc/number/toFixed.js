@@ -1,6 +1,7 @@
 /**
-* 将数字输出为指定小数位数的字符串。还可以同时指定数字右对齐、左边补空格方式的总输出长度。
+* 将数字 `num` 输出为指定小数位数的字符串。还可以同时指定数字右对齐、左边补空格方式的总输出长度。
 * @see {@link Arith.toOrdinal}
+* @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed|Number#toFixed}
 * @access public
 * @func Arith.toFixed
 * @param {number} num - 数字。

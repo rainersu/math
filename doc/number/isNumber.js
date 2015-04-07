@@ -1,9 +1,9 @@
 /**
-* 判断指定变量是否是 {@link https://developer.mozilla.org/en-US/docs/Glossary/Number|数字} 类型。
+* 判断指定变量 `val` 是否是 {@link https://developer.mozilla.org/en-US/docs/Glossary/Number|数字} 类型。
 * @see {@link Arith.isNumeric}
 * @access public
 * @func Arith.isNumber
-* @param {*} val - 待检测值。
+* @param {*} val - 要检测的变量。
 * @returns {boolean}
 * @example
 * console.log(Arith.isNumber(NaN));                   // true

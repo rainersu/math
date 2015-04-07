@@ -1,9 +1,9 @@
 /**
-* 判断指定变量是否是 {@link http://en.wikipedia.org/wiki/Composite_number|合数} 。
+* 判断指定变量 `val` 是否是 {@link http://en.wikipedia.org/wiki/Composite_number|合数} 。
 * @see {@link Arith.isPrime}
 * @access public
 * @func Arith.isComposite
-* @param {number} val - 要检测的数值。
+* @param {number} val - 要检测的变量。
 * @returns {boolean}
 * @example
 * console.log(Arith.isComposite(0));      // false

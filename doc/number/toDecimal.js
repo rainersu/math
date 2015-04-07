@@ -1,6 +1,7 @@
 /**
-* 获取数值的小数部分。
+* 获取数值 `num` 的小数部分。
 * @see {@link Arith.toInteger}
+* @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc|Math.trunc}
 * @access public
 * @func Arith.toDecimal
 * @param {number} num - 数字。

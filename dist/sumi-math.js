@@ -16,7 +16,9 @@ A lightweight mathematics library extending the internal Math object.
     }
 })(this, function() {
     var undefined = void 0;
+    var noop = Function();
     var NaN = 0 / 0;
+    var LN10 = math.LN10;
     var infinity = 1 / 0;
     var float = parseFloat;
     var undef = undefined + "";
@@ -24,13 +26,22 @@ A lightweight mathematics library extending the internal Math object.
     var math = Math;
     var floor = math.floor;
     var ceil = math.ceil;
+    var round = math.round;
     var sqrt = math.sqrt;
     var min = math.min;
     var max = math.max;
     var pow = math.pow;
     var abs = math.abs;
+    var log = math.log;
+    var exp = math.exp;
     var num = Number;
+    var random = math.random;
+    function def(n, d) {
+        n = +n;
+        return n !== n ? d : n;
+    }
     var array = Array;
+    var slice = array.prototype.slice;
     var object = Object;
     var hasOP = object.prototype.hasOwnProperty;
     function am(v) {
@@ -114,6 +125,148 @@ A lightweight mathematics library extending the internal Math object.
     function limit(n, x, y) {
         return min(isnan(+y) ? infinity : y, max(isnan(+x) ? -infinity : x, n));
     }
+    function acosh(x) {
+        return log(x + sqrt(x * x - 1));
+    }
+    function cosh(x) {
+        return (exp(x) + exp(-x)) / 2;
+    }
+    function asinh(x) {
+        return x === -1 / 0 ? x : log(x + sqrt(x * x + 1));
+    }
+    function sinh(x) {
+        return (exp(x) - exp(-x)) / 2;
+    }
+    function atanh(x) {
+        return log((1 + x) / (1 - x)) / 2;
+    }
+    function tanh(x) {
+        return x === infinity ? 1 : x === -infinity ? -1 : (exp(x) - exp(-x)) / (exp(x) + exp(-x));
+    }
+    function cbrt(x) {
+        var y = pow(abs(x), 1 / 3);
+        return x < 0 ? -y : y;
+    }
+    function root(n, x) {
+        x = def(x, 2);
+        var b = n < 0, y = b && isEven(x) ? nan : pow(abs(n), 1 / x);
+        return b && y ? -y : y;
+    }
+    function clz32(x) {
+        return (x = x >>> 0) ? 32 - x.toString(2).length : 32;
+    }
+    function expm1(x) {
+        return exp(x) - 1;
+    }
+    function hypot() {
+        var a = arguments, i = a.length, r = 0;
+        for (;i--; ) {
+            r += a[i] * a[i];
+        }
+        return sqrt(r);
+    }
+    function imul(a, b) {
+        var xf = 65535, ah = a >>> 16 & xf, al = a & xf, bh = b >>> 16 & xf, bl = b & xf;
+        return al * bl + (ah * bl + al * bh << 16 >>> 0) | 0;
+    }
+    function iadd(x, y) {
+        var l = (x & 65535) + (y & 65535), m = (x >> 16) + (y >> 16) + (l >> 16);
+        return m << 16 | l & 65535;
+    }
+    function log1p(x) {
+        return log(1 + x);
+    }
+    function log10(x) {
+        return log(x) / LN10;
+    }
+    function log2(x) {
+        return log(x) / LN2;
+    }
+    function average(a) {
+        a = slice.call(arguments);
+        return (0, eval)(a.join("+")) / a.length;
+    }
+    function round10(v, e) {
+        v = +v;
+        e = ~~e;
+        if (!e) return round(v);
+        var g = "e";
+        v = v.toString().split(g);
+        v = round(+(v[0] + g + (v[1] ? +v[1] - e : -e))).toString().split(g);
+        return +(v[0] + g + (v[1] ? +v[1] + e : e));
+    }
+    function floor10(v, e) {
+        v = +v;
+        e = ~~e;
+        if (!e) return floor(v);
+        var g = "e";
+        v = v.toString().split(g);
+        v = floor(+(v[0] + g + (v[1] ? +v[1] - e : -e))).toString().split(g);
+        return +(v[0] + g + (v[1] ? +v[1] + e : e));
+    }
+    function ceil10(v, e) {
+        v = +v;
+        e = ~~e;
+        if (!e) return ceil(v);
+        var g = "e";
+        v = v.toString().split(g);
+        v = ceil(+(v[0] + g + (v[1] ? +v[1] - e : -e))).toString().split(g);
+        return +(v[0] + g + (v[1] ? +v[1] + e : e));
+    }
+    function factorial(i) {
+        i = i >>> 0;
+        var r = 1;
+        while (i > 1) {
+            r *= i--;
+        }
+        return r;
+    }
+    function fibonacci(n) {
+        var a = 0, b = 1, c, i = 0;
+        for (n = n >>> 0; i < n; ++i) {
+            c = b + a;
+            a = b;
+            b = c;
+        }
+        return a;
+    }
+    function random(m, f) {
+        return function h(n) {
+            var r = m[n];
+            if (am(r) !== "number") {
+                r = f(h, n);
+                m[n] = r;
+            }
+            return r;
+        };
+    }
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("");
+    function guid(e, a) {
+        var l = e || 36, u = array(l), x = a || chars.length, d = 0, i, r;
+        if (e) {
+            for (i = 0; i < l; i++) u[i] = chars[0 | random() * x];
+        } else {
+            for (i = 0; i < l; i++) {
+                if (i == 14) {
+                    u[i] = "4";
+                } else if (i == 8 || i == 13 || i == 18 || i == 23) {
+                    u[i] = "-";
+                } else {
+                    if (d <= 2) d = 33554432 + random() * 16777216 | 0;
+                    r = d & 15;
+                    d = d >> 4;
+                    u[i] = chars[i == 19 ? r & 3 | 8 : r];
+                }
+            }
+        }
+        return u.join("");
+    }
+    function random10(p, q, d) {
+        var n = +min(p, q).toFixed(d = +d || 0), x = max(p, q);
+        return floor10(random() * (+x.toFixed(d).replace(/\d$/, function(i) {
+            return x >= 0 ? +i + 1 : +i - 1;
+        }) - n) + n, -d);
+    }
     cp(Arith, {
         EPSILON: EPSILON,
         GOLDEN_RATIO: GOLDEN_RATIO,
@@ -134,11 +287,32 @@ A lightweight mathematics library extending the internal Math object.
         toFixed: toFixed,
         toOrdinal: toOrdinal,
         cycle: cycle,
-        limit: limit
+        limit: limit,
+        acosh: acosh,
+        cosh: cosh,
+        asinh: asinh,
+        sinh: sinh,
+        atanh: atanh,
+        tanh: tanh,
+        cbrt: cbrt,
+        root: root,
+        clz32: clz32,
+        expm1: expm1,
+        hypot: hypot,
+        imul: imul,
+        iadd: iadd,
+        log1p: log1p,
+        log10: log10,
+        log2: log2,
+        average: average,
+        round: round10,
+        floor: floor10,
+        ceil: ceil10,
+        factorial: factorial,
+        fibonacci: fibonacci,
+        memoize: memoize,
+        guid: guid,
+        random: random10
     });
-    var date = [ 8, 3, 2015 ].map(function(i) {
-        return Arith.toOrdinal(i, 2);
-    });
-    console.log(date.join("/"));
     return Arith;
 });

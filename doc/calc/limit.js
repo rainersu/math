@@ -1,6 +1,8 @@
 /**
-* 将数字 `n` 校正至指定的取值范围内。
+* 将数字 `num` 校正至不小于 'min' 且不大于 `max` 的取值范围内。
 * @see {@link Arith.cycle}
+* @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max|Math.max}
+* @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math.min|Math.min}
 * @access public
 * @func Arith.limit
 * @param {number} num - 要检查范围的数字。
