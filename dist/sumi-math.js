@@ -1,7 +1,7 @@
 /*!
 sumi-math v1.0.0
 https://github.com/rainersu/math
-A lightweight mathematics library extending the internal Math object. 
+A lightweight mathematics library as a replacement for the internal Math object.
 (c) 2015 Rainer Su( rainersu@foxmail.com | http://cn.linkedin.com/in/rainersu | QQ: 2627001536 )
 */
 (function(root, factory) {
@@ -16,7 +16,6 @@ A lightweight mathematics library extending the internal Math object.
     }
 })(this, function() {
     var undefined = void 0;
-    var noop = Function();
     var NaN = 0 / 0;
     var LN10 = math.LN10;
     var infinity = 1 / 0;
@@ -48,7 +47,7 @@ A lightweight mathematics library extending the internal Math object.
         return object.prototype.toString.call(v).split(/\W+/)[2].toLowerCase();
     }
     function cp(d, o) {
-        for (var m in o) if (hasOP.call(o, m)) d[m] = o[m];
+        for (var m in o) if (hasOP.call(o, m)) d[m] = d[m] || o[m];
         return d;
     }
     var Arith = {};
@@ -267,6 +266,10 @@ A lightweight mathematics library extending the internal Math object.
             return x >= 0 ? +i + 1 : +i - 1;
         }) - n) + n, -d);
     }
+    var c = "MAX_VALUE,MIN_VALUE,NEGATIVE_INFINITY,POSITIVE_INFINITY,parseFloat,parseInt".split(","), l, i;
+    for (l = c.length; l--; ) Arith[i = c[l]] = num[i];
+    c = "E,LN10,LN2,LOG10E,LOG2E,PI,SQRT1_2,SQRT2,abs,acos,asin,atan,atan2,cos,exp,fround,log,max,min,pow,sign,sin,sqrt,tan,trunc".split(",");
+    for (l = c.length; l--; ) Arith[i = c[l]] = math[i];
     cp(Arith, {
         EPSILON: EPSILON,
         GOLDEN_RATIO: GOLDEN_RATIO,

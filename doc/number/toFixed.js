@@ -11,5 +11,4 @@
 * @example
 * console.log('|' + Arith.toFixed( 0.123, 6));           // |0.123000
 * console.log('|' + Arith.toFixed(-0.123, 2, 8));        // |   -0.12
-* console.log('|' + Arith.toFixed(3, 2, 8, true));       // |00003.00
 */

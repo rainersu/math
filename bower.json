@@ -10,7 +10,7 @@
 			"qq": "2627001536"
 		}
 	],
-	"description": "A lightweight mathematics library extending the internal Math object. ",
+	"description": "A lightweight mathematics library as a replacement for the internal Math object.",
 	"main": "dist/sumi-math.js",
 	"keywords": [
 		"math",

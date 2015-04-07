@@ -1,6 +1,5 @@
 define([
 	'./undefined',
-	'./noop',
 	'./NaN',
 	'./LN10',
 	'./infinity',

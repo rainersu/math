@@ -2,13 +2,6 @@
 * @namespace Arith
 */
 /**
-* @namespace Sumi.Math
-*//**
-* @namespace Math
-*//**
-* @namespace Sumi
-*/
-/**
 * 可以在 `JavaScript` 中被表示的最小安全整数。
 * @var {number} Arith.MIN_SAFE_INTEGER
 */

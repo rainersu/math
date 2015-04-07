@@ -8,5 +8,4 @@ function(
 var hasOP = object.prototype.hasOwnProperty;
 
 return hasOP;
-
 });
