@@ -16,13 +16,13 @@ A lightweight mathematics library as a replacement for the internal Math object.
     }
 })(this, function() {
     var undefined = void 0;
-    var NaN = 0 / 0;
-    var LN10 = math.LN10;
-    var infinity = 1 / 0;
-    var float = parseFloat;
     var undef = undefined + "";
     var shell = typeof window !== undef ? window : typeof global !== undef ? global : this || 1;
     var math = Math;
+    var float = parseFloat;
+    var infinity = 1 / 0;
+    var NaN = 0 / 0;
+    var LN10 = math.LN10;
     var floor = math.floor;
     var ceil = math.ceil;
     var round = math.round;
@@ -229,7 +229,7 @@ A lightweight mathematics library as a replacement for the internal Math object.
         }
         return a;
     }
-    function random(m, f) {
+    function memoize(m, f) {
         return function h(n) {
             var r = m[n];
             if (am(r) !== "number") {
@@ -270,6 +270,12 @@ A lightweight mathematics library as a replacement for the internal Math object.
     for (l = c.length; l--; ) Arith[i = c[l]] = num[i];
     c = "E,LN10,LN2,LOG10E,LOG2E,PI,SQRT1_2,SQRT2,abs,acos,asin,atan,atan2,cos,exp,fround,log,max,min,pow,sign,sin,sqrt,tan,trunc".split(",");
     for (l = c.length; l--; ) Arith[i = c[l]] = math[i];
+    c = "toExponential,toPrecision,toString".split(",");
+    for (l = c.length; l--; ) (function(i) {
+        Arith[i] = function(n, x) {
+            return num.prototype[i].call(n, x);
+        };
+    })(c[l]);
     cp(Arith, {
         EPSILON: EPSILON,
         GOLDEN_RATIO: GOLDEN_RATIO,
@@ -317,5 +323,9 @@ A lightweight mathematics library as a replacement for the internal Math object.
         guid: guid,
         random: random10
     });
+    console.log(Arith.toString(6, 2));
+    console.log(Arith.toString(254, 16));
+    console.log(Arith.toString(-10, 2));
+    console.log(Arith.toString(-255, 2));
     return Arith;
 });

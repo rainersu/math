@@ -109,6 +109,12 @@ var c = 'MAX_VALUE,MIN_VALUE,NEGATIVE_INFINITY,POSITIVE_INFINITY,parseFloat,pars
 for(l = c.length; l--;) Arith[i = c[l]] =  num[i];
 c = 'E,LN10,LN2,LOG10E,LOG2E,PI,SQRT1_2,SQRT2,abs,acos,asin,atan,atan2,cos,exp,fround,log,max,min,pow,sign,sin,sqrt,tan,trunc'.split(',');
 for(l = c.length; l--;) Arith[i = c[l]] = math[i];
+c = 'toExponential,toPrecision,toString'.split(',');
+for(l = c.length; l--;)(function (i) {
+	Arith[i] = function (n, x) {
+		return num.prototype[i].call(n, x);
+	};
+})(c[l]);
 
 cp(Arith, {
 	EPSILON          : EPSILON,

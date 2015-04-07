@@ -5,10 +5,10 @@
 * @access public
 * @func Arith.toFixed
 * @param {number} num - 数字。
-* @param {number} [digits=0] - 小数位数。
+* @param {number} [digits=0] - 小数位数。取值范围为 `0` - `20` 。
 * @param {number} [length] - 总输出长度。
 * @returns {number}
 * @example
-* console.log('|' + Arith.toFixed( 0.123, 6));           // |0.123000
-* console.log('|' + Arith.toFixed(-0.123, 2, 8));        // |   -0.12
+* console.log('|' + Arith.toFixed( 0.123, 6));      // |0.123000
+* console.log('|' + Arith.toFixed(-0.123, 2, 8));   // |   -0.12
 */

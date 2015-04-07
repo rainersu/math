@@ -1,11 +1,11 @@
 define([
-	'../var/random'
+	'../var/am'
 ],
 function(
-	random
+	am
 ) {'use strict';
 
-function random (m, f) {
+function memoize (m, f) {
 	return (function h (n) {
 		var r = m[n];
 		if (am(r) !== 'number') {
@@ -16,5 +16,5 @@ function random (m, f) {
 	});
 }
 
-return random;
+return memoize;
 });
