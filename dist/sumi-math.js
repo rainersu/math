@@ -122,7 +122,8 @@ A lightweight mathematics library as a replacement for the internal Math object.
         return toFixed(n * 100, i, l - 1) + "%";
     }
     function parseint(n, b) {
-        return def(b, 0) ? round(parsefloat(n, b)) : int(n);
+        b = +b;
+        return b === 1 ? round(parsefloat(n, b)) : int(n, b);
     }
     function parsefloat(n, b) {
         var m = 1;

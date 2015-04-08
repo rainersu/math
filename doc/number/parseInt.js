@@ -10,6 +10,10 @@
 * @param {boolean}  useRegExp.true  - 使用更复杂但更精准的正则表达式方法。能正确处理四舍五入，甚至百分数。
 * @returns {number}
 * @example
+* console.log(Arith.parseInt('3.3px'));      //  3
+* console.log(Arith.parseInt('1f', 16));     // 31
+* console.log(Arith.parseInt('0x1f', 16));   // 31
+* @example
 * console.log([ '--1.233.3', '-123.3e-2', 'a-123.3e-2b', 'a-123.3%b' ].map(function (str) {
 *     return Arith.parseInt(str);
 * }));
@@ -20,5 +24,5 @@
 *     return Arith.parseInt(str, true);
 * }));
 * 
-* // [ -1.233, -1.233, -1.233, -1.233 ]
+* // [ -1, -1, -1, -1 ]
 */

@@ -1,4 +1,5 @@
 /**
+* 内置 {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math|Math} 对象的替代品。映射了 {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math|Math} 的所有字段，为部分方法提供了改进版本，以及扩展了更多实用方法。
 * @namespace Arith
 */
 /**
