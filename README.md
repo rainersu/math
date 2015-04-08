@@ -32,7 +32,7 @@ var x = Arith.parseFloat('xxx-123.3%xxx', true);  // x = -1.233
 
 As a module that works with AMD(e.g., [RequireJS](http://requirejs.org/)):
 
-```
+```JavaScript
 define(['/path/to/sumi-math-1.0.0.min.js'], function(Arith) {
 	var x = Arith.round(55.549, -2);   //  x = 55.55
 });
@@ -40,7 +40,7 @@ define(['/path/to/sumi-math-1.0.0.min.js'], function(Arith) {
 
 Including in a CommonJS environment(e.g., [Node.js](https://nodejs.org/)):
 
-```bash
+```JavaScript
 var sumiMath = require('/path/to/sumi-math');
 var x = sumiMath.toPercent(-0.123, 2);   // x = -12.30%
 ```
