@@ -50,7 +50,7 @@ Build from source
 
 First, you need to have [Node.js](https://nodejs.org/) and [Grunt](http://gruntjs.com/) installed.
 
-```bash
+```Shell
 $ git clone git@github.com:rainersu/math.git
 $ npm install -g grunt-cli
 $ cd math
@@ -63,14 +63,14 @@ It provides compiled JS (`sumi-math.*`), as well as compiled and minified JS (`s
 Running demos for testing
 -------------------------
 
-```bash
+```Shell
 $ grunt test
 ```
 
 Build & running documentation locally
 -------------------------------------
 
-```bash
+```Shell
 $ grunt help
 ```
 
