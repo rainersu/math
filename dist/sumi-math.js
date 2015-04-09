@@ -1,5 +1,5 @@
 /*!
-sumi-math v1.0.0
+sumi-math v1.0.3
 https://github.com/rainersu/math
 A lightweight mathematics library as a replacement for the internal Math object.
 (c) 2015 Rainer Su( rainersu@foxmail.com | http://cn.linkedin.com/in/rainersu | QQ: 2627001536 )
@@ -16,13 +16,15 @@ A lightweight mathematics library as a replacement for the internal Math object.
     }
 })(this, function() {
     var undefined = void 0;
+    var object = Object;
+    var array = Array;
+    var math = Math;
+    var NaN = 0 / 0;
+    var infinity = 1 / 0;
     var undef = undefined + "";
     var shell = typeof window !== undef ? window : typeof global !== undef ? global : this || 1;
-    var math = Math;
     var float = parseFloat;
     var int = parseInt;
-    var infinity = 1 / 0;
-    var NaN = 0 / 0;
     var LN10 = math.LN10;
     var floor = math.floor;
     var ceil = math.ceil;
@@ -40,9 +42,7 @@ A lightweight mathematics library as a replacement for the internal Math object.
         n = +n;
         return n !== n ? d : n;
     }
-    var array = Array;
     var slice = array.prototype.slice;
-    var object = Object;
     var hasOP = object.prototype.hasOwnProperty;
     function am(v) {
         return object.prototype.toString.call(v).split(/\W+/)[2].toLowerCase();
